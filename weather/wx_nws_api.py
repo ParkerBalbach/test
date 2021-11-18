@@ -42,14 +42,19 @@ for i in range(len(r_json['properties']['periods'])):
     temps_df = temps_df.append({'day':cd_string, 'avg':temp}, ignore_index=True)
 
 temps_df.index.name = 'index'
-avg_temps_df = temps_df.groupby(['day']).mean()
-
-print(avg_temps_df)
-
-
+temps_df['day_only'] = temps_df['day'].str.slice(start=8,stop=10)
+#print(temps_df)
+print(temps_df.groupby(['day_only'],as_index=False).mean())
 
 
-#for i in range(len(r_json['properties']['periods'])):
+
+
+#print(avg_temps_df)
+
+
+
+
+# for i in range(len(r_json['properties']['periods'])):
 #    print([r_json['properties']['periods'][i]['temperature'], 
 #            r_json['properties']['periods'][i]['name'],
 #            r_json['properties']['periods'][i]['startTime'],
